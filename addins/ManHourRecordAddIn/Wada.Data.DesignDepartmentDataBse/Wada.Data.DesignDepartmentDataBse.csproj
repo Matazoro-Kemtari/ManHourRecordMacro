@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{60CFA339-DB9B-4635-9184-4FB92474248F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wada.Data.DesignDepartmentDataBse</RootNamespace>
+    <AssemblyName>Wada.Data.DesignDepartmentDataBse</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AttendanceRepository.cs" />
+    <Compile Include="Entities\Achievement.cs">
+      <DependentUpon>DesignDepartmentDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Attendance.cs">
+      <DependentUpon>DesignDepartmentDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DesignDepartmentDb.Context.cs">
+      <DependentUpon>DesignDepartmentDb.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\DesignDepartmentDb.cs">
+      <DependentUpon>DesignDepartmentDb.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\DesignDepartmentDb.Designer.cs">
+      <DependentUpon>DesignDepartmentDb.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\OwnCompanyHoliday.cs">
+      <DependentUpon>DesignDepartmentDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OwnCompanyHolidayRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="EntityFramework.ja">
+      <Version>6.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="MethodDecorator.Fody">
+      <Version>1.1.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Entities\DesignDepartmentDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DesignDepartmentDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\DesignDepartmentDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DesignDepartmentDb.edmx</DependentUpon>
+      <LastGenOutput>DesignDepartmentDb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\DesignDepartmentDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DesignDepartmentDb.edmx</DependentUpon>
+      <LastGenOutput>DesignDepartmentDb.cs</LastGenOutput>
+    </Content>
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Entities\DesignDepartmentDb.edmx.diagram">
+      <DependentUpon>DesignDepartmentDb.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wada.AOP\Wada.AOP.csproj">
+      <Project>{1E54974E-D3BE-432F-BF19-3D49B0E8BEFA}</Project>
+      <Name>Wada.AOP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wada.Extensions\Wada.Extensions.csproj">
+      <Project>{5a5469ea-dae4-4f37-b65f-03bbc141a36b}</Project>
+      <Name>Wada.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wada.ManHourRecordService\Wada.ManHourRecordService.csproj">
+      <Project>{28906934-DCED-42FC-8FB6-4B7B733E6BE3}</Project>
+      <Name>Wada.ManHourRecordService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

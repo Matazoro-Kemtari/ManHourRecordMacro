@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OrderManagementDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="M作業台帳">
+          <Key>
+            <PropertyRef Name="自社NO" />
+          </Key>
+          <Property Name="自社NO" Type="int" Nullable="false" />
+          <Property Name="作業NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="旧作業NO" Type="varchar" MaxLength="10" />
+          <Property Name="年度" Type="smallint" Nullable="false" />
+          <Property Name="得意先ID" Type="int" Nullable="false" />
+          <Property Name="受注日" Type="datetime" />
+          <Property Name="EDI納期" Type="datetime" />
+          <Property Name="納期" Type="datetime" />
+          <Property Name="納入場所" Type="varchar" MaxLength="20" />
+          <Property Name="カラー" Type="varchar" MaxLength="20" />
+          <Property Name="機種" Type="varchar" MaxLength="20" />
+          <Property Name="機種コード" Type="varchar" MaxLength="300" />
+          <Property Name="客先担当" Type="varchar" MaxLength="30" />
+          <Property Name="ToolNo" Type="varchar(max)" />
+          <Property Name="工程" Type="varchar" MaxLength="30" />
+          <Property Name="一貫No" Type="varchar" MaxLength="30" />
+          <Property Name="コード" Type="varchar" MaxLength="20" />
+          <Property Name="シーケンス" Type="varchar" MaxLength="4" />
+          <Property Name="ツール" Type="varchar" MaxLength="4" />
+          <Property Name="製作点数" Type="varchar" MaxLength="4" />
+          <Property Name="個数１" Type="int" />
+          <Property Name="個数２" Type="int" />
+          <Property Name="単位１" Type="varchar" MaxLength="10" />
+          <Property Name="単位２" Type="varchar" MaxLength="10" />
+          <Property Name="発行No" Type="varchar" MaxLength="20" />
+          <Property Name="製作" Type="int" />
+          <Property Name="オーダー" Type="varchar" MaxLength="12" />
+          <Property Name="アイテム" Type="varchar" MaxLength="10" />
+          <Property Name="作理" Type="varchar" MaxLength="4" />
+          <Property Name="ユース" Type="varchar" MaxLength="20" />
+          <Property Name="MND1" Type="int" />
+          <Property Name="MNDDate1" Type="datetime" />
+          <Property Name="MND2" Type="int" />
+          <Property Name="MNDDate2" Type="datetime" />
+          <Property Name="製作種別" Type="varchar" MaxLength="20" />
+          <Property Name="図面" Type="varchar" MaxLength="4" />
+          <Property Name="LIFETIME" Type="varchar" MaxLength="8" />
+          <Property Name="RefToolNo" Type="varchar" MaxLength="50" />
+          <Property Name="品名" Type="varchar" MaxLength="100" />
+          <Property Name="板金棚番" Type="varchar" MaxLength="30" />
+          <Property Name="製作号機1" Type="int" />
+          <Property Name="製作号機2" Type="int" />
+          <Property Name="責任ショップ" Type="int" />
+          <Property Name="規格" Type="varchar" MaxLength="30" />
+          <Property Name="材料ロットNo" Type="varchar" MaxLength="30" />
+          <Property Name="板厚" Type="float" />
+          <Property Name="W" Type="float" />
+          <Property Name="L" Type="float" />
+          <Property Name="個数取" Type="smallint" />
+          <Property Name="テンプレート借用" Type="int" />
+          <Property Name="テンプレート返却" Type="int" />
+          <Property Name="メモ" Type="varchar" MaxLength="255" />
+          <Property Name="TUpdate" Type="datetime" />
+          <Property Name="状態" Type="varchar" MaxLength="10" />
+          <Property Name="工数" Type="float" />
+          <Property Name="バーコード" Type="varchar" MaxLength="20" />
+          <Property Name="三工程" Type="int" />
+          <Property Name="前状態" Type="varchar" MaxLength="10" />
+          <Property Name="完成日" Type="datetime" />
+          <Property Name="請求日" Type="datetime" />
+          <Property Name="検収日" Type="datetime" />
+          <Property Name="注文No" Type="varchar" MaxLength="50" />
+          <Property Name="予定日" Type="datetime" />
+          <Property Name="契約単価" Type="money" />
+          <Property Name="見積金額" Type="money" />
+          <Property Name="請求金額" Type="money" />
+          <Property Name="材料材質" Type="varchar" MaxLength="64" />
+          <Property Name="マイラー" Type="varchar" MaxLength="4" />
+          <Property Name="納品日" Type="datetime" />
+          <Property Name="ロット" Type="varchar" MaxLength="10" />
+          <Property Name="請求書発行日" Type="datetime" />
+          <Property Name="納品書発行日" Type="datetime" />
+          <Property Name="仮納品書発行日" Type="datetime" />
+          <Property Name="請求No" Type="int" />
+          <Property Name="持込者" Type="varchar" MaxLength="50" />
+          <Property Name="納品書" Type="int" />
+          <Property Name="EDI参照日" Type="datetime" />
+          <Property Name="カルテ種類ID" Type="int" />
+          <Property Name="部品明細書作成日" Type="datetime" />
+          <Property Name="部品明細書作成者" Type="varchar" MaxLength="30" />
+          <Property Name="リスク発生確率" Type="smallint" />
+          <Property Name="リスク影響度" Type="smallint" />
+          <Property Name="リスク発生確率納期" Type="tinyint" />
+          <Property Name="リスク発生確率技術" Type="tinyint" />
+          <Property Name="リスク発生確率品質" Type="tinyint" />
+          <Property Name="リスク影響度納期" Type="tinyint" />
+          <Property Name="リスク影響度技術" Type="tinyint" />
+          <Property Name="リスク影響度品質" Type="tinyint" />
+          <Property Name="リスク実施部門" Type="varchar" MaxLength="25" />
+          <Property Name="リスク管理責任者" Type="varchar" MaxLength="30" />
+          <Property Name="アイテムの大きさが2000mm以上" Type="bit" />
+          <Property Name="溶接加工・表面処理・焼入れ・窒化処理・NC加工プログラム製作等" Type="bit" />
+          <Property Name="形状公差±0.05以下" Type="bit" />
+          <Property Name="穴交差±0.02以下" Type="bit" />
+          <Property Name="過去に実績がない新規発注アイテムまたは加工方法" Type="bit" />
+        </EntityType>
+        <EntityType Name="S社員">
+          <Key>
+            <PropertyRef Name="社員NO" />
+          </Key>
+          <Property Name="分類" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="社員NO" Type="int" Nullable="false" />
+          <Property Name="氏名" Type="varchar" MaxLength="125" Nullable="false" />
+          <Property Name="所属会社ID" Type="int" />
+          <Property Name="雇用形態ID" Type="int" />
+          <Property Name="勤務形態ID" Type="int" />
+          <Property Name="部署ID" Type="int" />
+          <Property Name="実績工程ID" Type="int" />
+          <Property Name="フリガナ" Type="varchar" MaxLength="125" Nullable="false" />
+          <Property Name="生年月日" Type="datetime" Nullable="false" />
+          <Property Name="年齢" Type="smallint" />
+          <Property Name="血液型" Type="nchar" MaxLength="10" />
+          <Property Name="郵便番号" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="住所" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Tel" Type="varchar" MaxLength="125" Nullable="false" />
+          <Property Name="Fax" Type="nchar" MaxLength="10" />
+          <Property Name="会社携帯番号" Type="varchar" MaxLength="15" />
+          <Property Name="携帯番号" Type="varchar" MaxLength="15" />
+          <Property Name="勤続" Type="smallint" />
+          <Property Name="入社日" Type="datetime" Nullable="false" />
+          <Property Name="勤務地ID" Type="int" />
+          <Property Name="派遣先ID" Type="int" />
+          <Property Name="派遣終了日" Type="datetime" />
+          <Property Name="役職" Type="varchar" MaxLength="20" />
+          <Property Name="夏作業服" Type="varchar" MaxLength="20" />
+          <Property Name="冬作業服" Type="varchar" MaxLength="20" />
+          <Property Name="作業帽" Type="varchar" MaxLength="20" />
+          <Property Name="上着サイズ" Type="varchar" MaxLength="20" />
+          <Property Name="上着種類" Type="varchar" MaxLength="20" />
+          <Property Name="ズボンW" Type="varchar" MaxLength="20" />
+          <Property Name="ズボン丈" Type="varchar" MaxLength="20" />
+          <Property Name="ジャンパー" Type="varchar" MaxLength="20" />
+          <Property Name="Tシャツ" Type="varchar" MaxLength="20" />
+          <Property Name="安全靴" Type="varchar" MaxLength="20" />
+          <Property Name="通勤手段" Type="varchar" MaxLength="20" />
+          <Property Name="駐車場" Type="varchar" MaxLength="20" />
+          <Property Name="通勤距離" Type="varchar" MaxLength="20" />
+          <Property Name="通勤手当" Type="varchar" MaxLength="20" />
+          <Property Name="銀行名" Type="varchar" MaxLength="20" />
+          <Property Name="支店名" Type="varchar" MaxLength="20" />
+          <Property Name="口座番号" Type="varchar" MaxLength="20" />
+          <Property Name="基礎年金番号" Type="varchar" MaxLength="20" />
+          <Property Name="健保番号" Type="varchar" MaxLength="20" />
+          <Property Name="雇用保険番号" Type="varchar" MaxLength="20" />
+          <Property Name="備考" Type="varchar" MaxLength="250" />
+          <Property Name="表示順" Type="int" />
+          <Property Name="検索キー" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="OrderManagementDbModelStoreContainer">
+          <EntitySet Name="M作業台帳" EntityType="Self.M作業台帳" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S社員" EntityType="Self.S社員" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OrderManagementDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="M作業台帳">
+          <Key>
+            <PropertyRef Name="自社NO" />
+          </Key>
+          <Property Name="自社NO" Type="Int32" Nullable="false" />
+          <Property Name="作業NO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="旧作業NO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="年度" Type="Int16" Nullable="false" />
+          <Property Name="得意先ID" Type="Int32" Nullable="false" />
+          <Property Name="受注日" Type="DateTime" Precision="3" />
+          <Property Name="EDI納期" Type="DateTime" Precision="3" />
+          <Property Name="納期" Type="DateTime" Precision="3" />
+          <Property Name="納入場所" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="カラー" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="機種" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="機種コード" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="客先担当" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ToolNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="工程" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="一貫No" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="コード" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="シーケンス" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ツール" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="製作点数" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="個数１" Type="Int32" />
+          <Property Name="個数２" Type="Int32" />
+          <Property Name="単位１" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="単位２" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="発行No" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="製作" Type="Int32" />
+          <Property Name="オーダー" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="アイテム" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="作理" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ユース" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MND1" Type="Int32" />
+          <Property Name="MNDDate1" Type="DateTime" Precision="3" />
+          <Property Name="MND2" Type="Int32" />
+          <Property Name="MNDDate2" Type="DateTime" Precision="3" />
+          <Property Name="製作種別" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="図面" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="LIFETIME" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="RefToolNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="品名" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="板金棚番" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="製作号機1" Type="Int32" />
+          <Property Name="製作号機2" Type="Int32" />
+          <Property Name="責任ショップ" Type="Int32" />
+          <Property Name="規格" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="材料ロットNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="板厚" Type="Double" />
+          <Property Name="W" Type="Double" />
+          <Property Name="L" Type="Double" />
+          <Property Name="個数取" Type="Int16" />
+          <Property Name="テンプレート借用" Type="Int32" />
+          <Property Name="テンプレート返却" Type="Int32" />
+          <Property Name="メモ" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TUpdate" Type="DateTime" Precision="3" />
+          <Property Name="状態" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="工数" Type="Double" />
+          <Property Name="バーコード" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="三工程" Type="Int32" />
+          <Property Name="前状態" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="完成日" Type="DateTime" Precision="3" />
+          <Property Name="請求日" Type="DateTime" Precision="3" />
+          <Property Name="検収日" Type="DateTime" Precision="3" />
+          <Property Name="注文No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="予定日" Type="DateTime" Precision="3" />
+          <Property Name="契約単価" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="見積金額" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="請求金額" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="材料材質" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="マイラー" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="納品日" Type="DateTime" Precision="3" />
+          <Property Name="ロット" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="請求書発行日" Type="DateTime" Precision="3" />
+          <Property Name="納品書発行日" Type="DateTime" Precision="3" />
+          <Property Name="仮納品書発行日" Type="DateTime" Precision="3" />
+          <Property Name="請求No" Type="Int32" />
+          <Property Name="持込者" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="納品書" Type="Int32" />
+          <Property Name="EDI参照日" Type="DateTime" Precision="3" />
+          <Property Name="カルテ種類ID" Type="Int32" />
+          <Property Name="部品明細書作成日" Type="DateTime" Precision="3" />
+          <Property Name="部品明細書作成者" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="リスク発生確率" Type="Int16" />
+          <Property Name="リスク影響度" Type="Int16" />
+          <Property Name="リスク発生確率納期" Type="Byte" />
+          <Property Name="リスク発生確率技術" Type="Byte" />
+          <Property Name="リスク発生確率品質" Type="Byte" />
+          <Property Name="リスク影響度納期" Type="Byte" />
+          <Property Name="リスク影響度技術" Type="Byte" />
+          <Property Name="リスク影響度品質" Type="Byte" />
+          <Property Name="リスク実施部門" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="リスク管理責任者" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="アイテムの大きさが2000mm以上" Type="Boolean" />
+          <Property Name="溶接加工_表面処理_焼入れ_窒化処理_NC加工プログラム製作等" Type="Boolean" />
+          <Property Name="形状公差_0_05以下" Type="Boolean" />
+          <Property Name="穴交差_0_02以下" Type="Boolean" />
+          <Property Name="過去に実績がない新規発注アイテムまたは加工方法" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="S社員">
+          <Key>
+            <PropertyRef Name="社員NO" />
+          </Key>
+          <Property Name="分類" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="社員NO" Type="Int32" Nullable="false" />
+          <Property Name="氏名" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="所属会社ID" Type="Int32" />
+          <Property Name="雇用形態ID" Type="Int32" />
+          <Property Name="勤務形態ID" Type="Int32" />
+          <Property Name="部署ID" Type="Int32" />
+          <Property Name="実績工程ID" Type="Int32" />
+          <Property Name="フリガナ" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="生年月日" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="年齢" Type="Int16" />
+          <Property Name="血液型" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="郵便番号" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="住所" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="125" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fax" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="会社携帯番号" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="携帯番号" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="勤続" Type="Int16" />
+          <Property Name="入社日" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="勤務地ID" Type="Int32" />
+          <Property Name="派遣先ID" Type="Int32" />
+          <Property Name="派遣終了日" Type="DateTime" Precision="3" />
+          <Property Name="役職" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="夏作業服" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="冬作業服" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="作業帽" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="上着サイズ" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="上着種類" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ズボンW" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ズボン丈" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ジャンパー" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tシャツ" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="安全靴" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="通勤手段" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="駐車場" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="通勤距離" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="通勤手当" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="銀行名" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="支店名" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="口座番号" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="基礎年金番号" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="健保番号" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="雇用保険番号" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="備考" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="表示順" Type="Int32" />
+          <Property Name="検索キー" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="OrderManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="M作業台帳" EntityType="Self.M作業台帳" />
+          <EntitySet Name="S社員" EntityType="Self.S社員" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OrderManagementDbModelStoreContainer" CdmEntityContainer="OrderManagementEntities">
+          <EntitySetMapping Name="M作業台帳">
+            <EntityTypeMapping TypeName="OrderManagementDbModel.M作業台帳">
+              <MappingFragment StoreEntitySet="M作業台帳">
+                <ScalarProperty Name="自社NO" ColumnName="自社NO" />
+                <ScalarProperty Name="作業NO" ColumnName="作業NO" />
+                <ScalarProperty Name="旧作業NO" ColumnName="旧作業NO" />
+                <ScalarProperty Name="年度" ColumnName="年度" />
+                <ScalarProperty Name="得意先ID" ColumnName="得意先ID" />
+                <ScalarProperty Name="受注日" ColumnName="受注日" />
+                <ScalarProperty Name="EDI納期" ColumnName="EDI納期" />
+                <ScalarProperty Name="納期" ColumnName="納期" />
+                <ScalarProperty Name="納入場所" ColumnName="納入場所" />
+                <ScalarProperty Name="カラー" ColumnName="カラー" />
+                <ScalarProperty Name="機種" ColumnName="機種" />
+                <ScalarProperty Name="機種コード" ColumnName="機種コード" />
+                <ScalarProperty Name="客先担当" ColumnName="客先担当" />
+                <ScalarProperty Name="ToolNo" ColumnName="ToolNo" />
+                <ScalarProperty Name="工程" ColumnName="工程" />
+                <ScalarProperty Name="一貫No" ColumnName="一貫No" />
+                <ScalarProperty Name="コード" ColumnName="コード" />
+                <ScalarProperty Name="シーケンス" ColumnName="シーケンス" />
+                <ScalarProperty Name="ツール" ColumnName="ツール" />
+                <ScalarProperty Name="製作点数" ColumnName="製作点数" />
+                <ScalarProperty Name="個数１" ColumnName="個数１" />
+                <ScalarProperty Name="個数２" ColumnName="個数２" />
+                <ScalarProperty Name="単位１" ColumnName="単位１" />
+                <ScalarProperty Name="単位２" ColumnName="単位２" />
+                <ScalarProperty Name="発行No" ColumnName="発行No" />
+                <ScalarProperty Name="製作" ColumnName="製作" />
+                <ScalarProperty Name="オーダー" ColumnName="オーダー" />
+                <ScalarProperty Name="アイテム" ColumnName="アイテム" />
+                <ScalarProperty Name="作理" ColumnName="作理" />
+                <ScalarProperty Name="ユース" ColumnName="ユース" />
+                <ScalarProperty Name="MND1" ColumnName="MND1" />
+                <ScalarProperty Name="MNDDate1" ColumnName="MNDDate1" />
+                <ScalarProperty Name="MND2" ColumnName="MND2" />
+                <ScalarProperty Name="MNDDate2" ColumnName="MNDDate2" />
+                <ScalarProperty Name="製作種別" ColumnName="製作種別" />
+                <ScalarProperty Name="図面" ColumnName="図面" />
+                <ScalarProperty Name="LIFETIME" ColumnName="LIFETIME" />
+                <ScalarProperty Name="RefToolNo" ColumnName="RefToolNo" />
+                <ScalarProperty Name="品名" ColumnName="品名" />
+                <ScalarProperty Name="板金棚番" ColumnName="板金棚番" />
+                <ScalarProperty Name="製作号機1" ColumnName="製作号機1" />
+                <ScalarProperty Name="製作号機2" ColumnName="製作号機2" />
+                <ScalarProperty Name="責任ショップ" ColumnName="責任ショップ" />
+                <ScalarProperty Name="規格" ColumnName="規格" />
+                <ScalarProperty Name="材料ロットNo" ColumnName="材料ロットNo" />
+                <ScalarProperty Name="板厚" ColumnName="板厚" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="L" ColumnName="L" />
+                <ScalarProperty Name="個数取" ColumnName="個数取" />
+                <ScalarProperty Name="テンプレート借用" ColumnName="テンプレート借用" />
+                <ScalarProperty Name="テンプレート返却" ColumnName="テンプレート返却" />
+                <ScalarProperty Name="メモ" ColumnName="メモ" />
+                <ScalarProperty Name="TUpdate" ColumnName="TUpdate" />
+                <ScalarProperty Name="状態" ColumnName="状態" />
+                <ScalarProperty Name="工数" ColumnName="工数" />
+                <ScalarProperty Name="バーコード" ColumnName="バーコード" />
+                <ScalarProperty Name="三工程" ColumnName="三工程" />
+                <ScalarProperty Name="前状態" ColumnName="前状態" />
+                <ScalarProperty Name="完成日" ColumnName="完成日" />
+                <ScalarProperty Name="請求日" ColumnName="請求日" />
+                <ScalarProperty Name="検収日" ColumnName="検収日" />
+                <ScalarProperty Name="注文No" ColumnName="注文No" />
+                <ScalarProperty Name="予定日" ColumnName="予定日" />
+                <ScalarProperty Name="契約単価" ColumnName="契約単価" />
+                <ScalarProperty Name="見積金額" ColumnName="見積金額" />
+                <ScalarProperty Name="請求金額" ColumnName="請求金額" />
+                <ScalarProperty Name="材料材質" ColumnName="材料材質" />
+                <ScalarProperty Name="マイラー" ColumnName="マイラー" />
+                <ScalarProperty Name="納品日" ColumnName="納品日" />
+                <ScalarProperty Name="ロット" ColumnName="ロット" />
+                <ScalarProperty Name="請求書発行日" ColumnName="請求書発行日" />
+                <ScalarProperty Name="納品書発行日" ColumnName="納品書発行日" />
+                <ScalarProperty Name="仮納品書発行日" ColumnName="仮納品書発行日" />
+                <ScalarProperty Name="請求No" ColumnName="請求No" />
+                <ScalarProperty Name="持込者" ColumnName="持込者" />
+                <ScalarProperty Name="納品書" ColumnName="納品書" />
+                <ScalarProperty Name="EDI参照日" ColumnName="EDI参照日" />
+                <ScalarProperty Name="カルテ種類ID" ColumnName="カルテ種類ID" />
+                <ScalarProperty Name="部品明細書作成日" ColumnName="部品明細書作成日" />
+                <ScalarProperty Name="部品明細書作成者" ColumnName="部品明細書作成者" />
+                <ScalarProperty Name="リスク発生確率" ColumnName="リスク発生確率" />
+                <ScalarProperty Name="リスク影響度" ColumnName="リスク影響度" />
+                <ScalarProperty Name="リスク発生確率納期" ColumnName="リスク発生確率納期" />
+                <ScalarProperty Name="リスク発生確率技術" ColumnName="リスク発生確率技術" />
+                <ScalarProperty Name="リスク発生確率品質" ColumnName="リスク発生確率品質" />
+                <ScalarProperty Name="リスク影響度納期" ColumnName="リスク影響度納期" />
+                <ScalarProperty Name="リスク影響度技術" ColumnName="リスク影響度技術" />
+                <ScalarProperty Name="リスク影響度品質" ColumnName="リスク影響度品質" />
+                <ScalarProperty Name="リスク実施部門" ColumnName="リスク実施部門" />
+                <ScalarProperty Name="リスク管理責任者" ColumnName="リスク管理責任者" />
+                <ScalarProperty Name="アイテムの大きさが2000mm以上" ColumnName="アイテムの大きさが2000mm以上" />
+                <ScalarProperty Name="溶接加工_表面処理_焼入れ_窒化処理_NC加工プログラム製作等" ColumnName="溶接加工・表面処理・焼入れ・窒化処理・NC加工プログラム製作等" />
+                <ScalarProperty Name="形状公差_0_05以下" ColumnName="形状公差±0.05以下" />
+                <ScalarProperty Name="穴交差_0_02以下" ColumnName="穴交差±0.02以下" />
+                <ScalarProperty Name="過去に実績がない新規発注アイテムまたは加工方法" ColumnName="過去に実績がない新規発注アイテムまたは加工方法" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S社員">
+            <EntityTypeMapping TypeName="OrderManagementDbModel.S社員">
+              <MappingFragment StoreEntitySet="S社員">
+                <ScalarProperty Name="分類" ColumnName="分類" />
+                <ScalarProperty Name="社員NO" ColumnName="社員NO" />
+                <ScalarProperty Name="氏名" ColumnName="氏名" />
+                <ScalarProperty Name="所属会社ID" ColumnName="所属会社ID" />
+                <ScalarProperty Name="雇用形態ID" ColumnName="雇用形態ID" />
+                <ScalarProperty Name="勤務形態ID" ColumnName="勤務形態ID" />
+                <ScalarProperty Name="部署ID" ColumnName="部署ID" />
+                <ScalarProperty Name="実績工程ID" ColumnName="実績工程ID" />
+                <ScalarProperty Name="フリガナ" ColumnName="フリガナ" />
+                <ScalarProperty Name="生年月日" ColumnName="生年月日" />
+                <ScalarProperty Name="年齢" ColumnName="年齢" />
+                <ScalarProperty Name="血液型" ColumnName="血液型" />
+                <ScalarProperty Name="郵便番号" ColumnName="郵便番号" />
+                <ScalarProperty Name="住所" ColumnName="住所" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="会社携帯番号" ColumnName="会社携帯番号" />
+                <ScalarProperty Name="携帯番号" ColumnName="携帯番号" />
+                <ScalarProperty Name="勤続" ColumnName="勤続" />
+                <ScalarProperty Name="入社日" ColumnName="入社日" />
+                <ScalarProperty Name="勤務地ID" ColumnName="勤務地ID" />
+                <ScalarProperty Name="派遣先ID" ColumnName="派遣先ID" />
+                <ScalarProperty Name="派遣終了日" ColumnName="派遣終了日" />
+                <ScalarProperty Name="役職" ColumnName="役職" />
+                <ScalarProperty Name="夏作業服" ColumnName="夏作業服" />
+                <ScalarProperty Name="冬作業服" ColumnName="冬作業服" />
+                <ScalarProperty Name="作業帽" ColumnName="作業帽" />
+                <ScalarProperty Name="上着サイズ" ColumnName="上着サイズ" />
+                <ScalarProperty Name="上着種類" ColumnName="上着種類" />
+                <ScalarProperty Name="ズボンW" ColumnName="ズボンW" />
+                <ScalarProperty Name="ズボン丈" ColumnName="ズボン丈" />
+                <ScalarProperty Name="ジャンパー" ColumnName="ジャンパー" />
+                <ScalarProperty Name="Tシャツ" ColumnName="Tシャツ" />
+                <ScalarProperty Name="安全靴" ColumnName="安全靴" />
+                <ScalarProperty Name="通勤手段" ColumnName="通勤手段" />
+                <ScalarProperty Name="駐車場" ColumnName="駐車場" />
+                <ScalarProperty Name="通勤距離" ColumnName="通勤距離" />
+                <ScalarProperty Name="通勤手当" ColumnName="通勤手当" />
+                <ScalarProperty Name="銀行名" ColumnName="銀行名" />
+                <ScalarProperty Name="支店名" ColumnName="支店名" />
+                <ScalarProperty Name="口座番号" ColumnName="口座番号" />
+                <ScalarProperty Name="基礎年金番号" ColumnName="基礎年金番号" />
+                <ScalarProperty Name="健保番号" ColumnName="健保番号" />
+                <ScalarProperty Name="雇用保険番号" ColumnName="雇用保険番号" />
+                <ScalarProperty Name="備考" ColumnName="備考" />
+                <ScalarProperty Name="表示順" ColumnName="表示順" />
+                <ScalarProperty Name="検索キー" ColumnName="検索キー" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

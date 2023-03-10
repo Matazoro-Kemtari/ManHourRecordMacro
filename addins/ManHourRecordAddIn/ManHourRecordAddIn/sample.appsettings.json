@@ -1,0 +1,9 @@
+{
+  "applicationConfiguration": {
+    "ExecutableExcelBoolSerialId": "",
+    "AttendanceTableDirectoryBase": "YOUR PATH",
+    "OvertimeTableDirectoryBase": "YOUR PATH",
+    "OvertimeTableTemplateDirectory": "YOUR PATH",
+    "DailyAchievementTableBase": "YOUR PATH"
+  }
+}
