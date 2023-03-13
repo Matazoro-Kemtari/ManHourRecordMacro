@@ -59,6 +59,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.IOTests", "Wada.IOTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.ManHourRecordServiceTests", "Wada.ManHourRecordServiceTests\Wada.ManHourRecordServiceTests.csproj", "{497999BF-582D-4BBD-B355-51B6E99C9002}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.SettingValidationRuleApplicationTests", "Wada.SettingValidationRuleApplicationTests\Wada.SettingValidationRuleApplicationTests.csproj", "{3DD1A421-E71C-4D4A-BFA4-28BEC0793E74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{497999BF-582D-4BBD-B355-51B6E99C9002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{497999BF-582D-4BBD-B355-51B6E99C9002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{497999BF-582D-4BBD-B355-51B6E99C9002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD1A421-E71C-4D4A-BFA4-28BEC0793E74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD1A421-E71C-4D4A-BFA4-28BEC0793E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD1A421-E71C-4D4A-BFA4-28BEC0793E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD1A421-E71C-4D4A-BFA4-28BEC0793E74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +185,7 @@ Global
 		{8B3A5B77-2D4E-442E-BE37-AFA8CC467316} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
 		{8A2F283C-5687-4389-BD8F-1D8873F370A1} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
 		{497999BF-582D-4BBD-B355-51B6E99C9002} = {BF23AA87-6418-4CE0-8ABA-9394EC4514BF}
+		{3DD1A421-E71C-4D4A-BFA4-28BEC0793E74} = {8658FB3B-8282-4FEA-8298-16DDC286CB73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78F51FF3-4929-4A88-B08F-28C47DA0E42B}
