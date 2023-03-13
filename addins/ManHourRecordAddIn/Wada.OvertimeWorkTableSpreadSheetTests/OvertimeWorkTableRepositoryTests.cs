@@ -289,11 +289,11 @@ namespace Wada.OvertimeWorkTableSpreadSheet.Tests
                     TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-002")),
                     TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-003")),
                     TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-004")),
-                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-006"), monHour: 1m),
-                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-005"), monHour: 1m),
-                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-007"), monHour: 0.5m),
-                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-008"), monHour: 0.5m),
-                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-008"), monHour: 2.5m),
+                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-006"), manHour: 1m),
+                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-005"), manHour: 1m),
+                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-007"), manHour: 0.5m),
+                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-008"), manHour: 0.5m),
+                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-008"), manHour: 2.5m),
                 });
             await repository.AddAsync(memoryStream, testAttendance);
 
@@ -347,7 +347,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet.Tests
             if (manHour != null)
                 achievements= new List<Achievement>
                 {
-                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-006"), monHour: (decimal)manHour),
+                    TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-006"), manHour: (decimal)manHour),
                 };
 
             var testAttendance = TestAttendanceFactory.Create(
