@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.WorkedRecordAgentSprea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.Data.DesignDepartmentDataBseTests", "Wada.Data.DesignDepartmentDataBseTests\Wada.Data.DesignDepartmentDataBseTests.csproj", "{8B3A5B77-2D4E-442E-BE37-AFA8CC467316}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.IOTests", "Wada.IOTests\Wada.IOTests.csproj", "{8A2F283C-5687-4389-BD8F-1D8873F370A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{8B3A5B77-2D4E-442E-BE37-AFA8CC467316}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B3A5B77-2D4E-442E-BE37-AFA8CC467316}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B3A5B77-2D4E-442E-BE37-AFA8CC467316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A2F283C-5687-4389-BD8F-1D8873F370A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A2F283C-5687-4389-BD8F-1D8873F370A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A2F283C-5687-4389-BD8F-1D8873F370A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A2F283C-5687-4389-BD8F-1D8873F370A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +171,7 @@ Global
 		{E3E9B7E6-A9A3-4193-8A32-8A1BE0323366} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
 		{8EF77ED5-566B-4384-AAEC-48002B27D546} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
 		{8B3A5B77-2D4E-442E-BE37-AFA8CC467316} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
+		{8A2F283C-5687-4389-BD8F-1D8873F370A1} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78F51FF3-4929-4A88-B08F-28C47DA0E42B}
