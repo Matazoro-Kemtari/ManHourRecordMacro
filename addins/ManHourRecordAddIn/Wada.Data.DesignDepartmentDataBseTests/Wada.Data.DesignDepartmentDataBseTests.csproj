@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D5020594-DF8B-4794-B730-9DE308978C10}</ProjectGuid>
+    <ProjectGuid>{8B3A5B77-2D4E-442E-BE37-AFA8CC467316}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wada.Data.OrderManagementTests</RootNamespace>
-    <AssemblyName>Wada.Data.OrderManagementTests</AssemblyName>
+    <RootNamespace>Wada.Data.DesignDepartmentDataBseTests</RootNamespace>
+    <AssemblyName>Wada.Data.DesignDepartmentDataBseTests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -17,8 +17,6 @@
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Transactions" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,17 +48,24 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="EmployeeRepositoryTests.cs" />
+    <Compile Include="AttendanceRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorkingLedgerRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <PackageReference Include="MSTest.TestAdapter">
+      <Version>2.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="MSTest.TestFramework">
+      <Version>2.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="Ulid">
+      <Version>1.2.6</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wada.Data.OrderManagement\Wada.Data.OrderManagement.csproj">
-      <Project>{B9AC8983-C67C-4B32-8295-8C90DDB51475}</Project>
-      <Name>Wada.Data.OrderManagement</Name>
+    <ProjectReference Include="..\Wada.Data.DesignDepartmentDataBse\Wada.Data.DesignDepartmentDataBse.csproj">
+      <Project>{60CFA339-DB9B-4635-9184-4FB92474248F}</Project>
+      <Name>Wada.Data.DesignDepartmentDataBse</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wada.ManHourRecordService\Wada.ManHourRecordService.csproj">
       <Project>{28906934-DCED-42FC-8FB6-4B7B733E6BE3}</Project>
@@ -68,15 +73,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EntityFramework">
-      <Version>6.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="MSTest.TestAdapter">
-      <Version>2.2.7</Version>
-    </PackageReference>
-    <PackageReference Include="MSTest.TestFramework">
-      <Version>2.2.7</Version>
-    </PackageReference>
+    <None Include="App.Config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -187,10 +187,10 @@ public class TestAttendanceFactory
             TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-002")),
             TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-003")),
             TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-004")),
-            TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-006"), monHour: 1m),
-            TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-005"), monHour: 1m),
-            TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-007"), monHour: 0.5m),
-            TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-008"), monHour: 0.5m),
+            TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-006"), manHour: 1m),
+            TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-005"), manHour: 1m),
+            TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-007"), manHour: 0.5m),
+            TestAchievementFactory.Create(workingNumber: new WorkingNumber("99Z-008"), manHour: 0.5m),
         };
 
         return new(employeeNumber, achievementDate, startTime.Value, dayOffClassification, department, achievements);
@@ -277,13 +277,13 @@ public class TestAchievementFactory
                                      string achievementProcess = "設計",
                                      string majorWorkingClassification = "大分類甲",
                                      string middleWorkingClassification = "中分類甲-乙",
-                                     decimal monHour = 1.25m,
+                                     decimal manHour = 1.25m,
                                      string note = "テストデータ")
         => new(workingNumber ?? new WorkingNumber("99Z-001"),
                det,
                achievementProcess,
                majorWorkingClassification,
                middleWorkingClassification,
-               monHour,
+               manHour,
                note);
 }

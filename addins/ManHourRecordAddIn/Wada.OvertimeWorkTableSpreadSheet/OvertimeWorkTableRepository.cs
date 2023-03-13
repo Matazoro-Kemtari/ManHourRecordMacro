@@ -110,7 +110,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet
                 return;
 
             var overtimeDirBase = _configuration["applicationConfiguration:OvertimeTableDirectoryBase"]
-                ?? throw new InvalidOperationException("設定情報が取得出来ません(AttendanceTableDirectoryBase) システム担当まで連絡してください");
+                ?? throw new InvalidOperationException("設定情報が取得出来ません(OvertimeTableDirectoryBase) システム担当まで連絡してください");
 
             var overtimeTablePath = Path.Combine(
                 overtimeDirBase,
@@ -124,7 +124,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet
                 overtimeTableFileInfo.Directory?.Create();
 
             var template = _configuration["applicationConfiguration:OvertimeTableTemplateDirectory"]
-                ?? throw new InvalidOperationException("設定情報が取得出来ません(AttendanceTableDirectoryBase) システム担当まで連絡してください");
+                ?? throw new InvalidOperationException("設定情報が取得出来ません(OvertimeTableTemplateDirectory) システム担当まで連絡してください");
 
             var templatePath = Path.Combine(
                 template,
@@ -186,7 +186,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet
         public bool OvertimeTableExists(OvertimeWorkTableOwner overtimeWorkTableOwner)
         {
             var overtimeDirBase = _configuration["applicationConfiguration:OvertimeTableDirectoryBase"]
-                ?? throw new InvalidOperationException("設定情報が取得出来ません(AttendanceTableDirectoryBase) システム担当まで連絡してください");
+                ?? throw new InvalidOperationException("設定情報が取得出来ません(OvertimeTableDirectoryBase) システム担当まで連絡してください");
 
             var overtimeTablePath = Path.Combine(
                 overtimeDirBase,
