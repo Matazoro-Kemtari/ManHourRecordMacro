@@ -191,7 +191,7 @@ public class AttendanceTableRepository : IAttendanceTableRepository
             || !attendanceRow.Cell(EndedTimeColumnLetter).IsEmpty())
             if (!canOverwriting(
                 $"シート: {targetSheet.Name}, 日付: {achievementDate:yyyy/MM/dd}"))
-                throw new ManHourRecordServiceException("中止しました");
+                throw new OperationCanceledException("中止しました");
 
         attendanceRow.Cell(DayOffColumnLetter).Value = dayOffClassification.GetEnumDisplayShortName();
         attendanceRow.Cell(StartedTimeColumnLetter).Value = startTime;

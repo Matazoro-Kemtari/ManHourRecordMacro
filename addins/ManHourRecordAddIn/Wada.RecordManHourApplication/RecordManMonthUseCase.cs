@@ -3,9 +3,11 @@ using System.Text.RegularExpressions;
 using System.Transactions;
 using Wada.AOP.Logging;
 using Wada.Extensions;
+using Wada.IO;
 using Wada.ManHourRecordService;
 using Wada.ManHourRecordService.AttendanceAggregation;
 using Wada.ManHourRecordService.AttendanceTableCreator;
+using Wada.ManHourRecordService.EmployeeAggregation;
 using Wada.ManHourRecordService.OvertimeWorkTableCreator;
 using Wada.ManHourRecordService.ValueObjects;
 
@@ -42,36 +44,44 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
     public async Task ExecuteAsync(AttendanceParam attendancePram,
                                    Func<string, bool> canAttendanceTableOverwriting)
     {
+        using MemoryStream attendanceMemoryStream = new();
+        using MemoryStream overtimeMemoryStream = new();
+        using MemoryStream dailyReportMemoryStream = new();
+        Stream[] streams;
         try
         {
-            using MemoryStream attendanceMemoryStream = new();
-            using MemoryStream overtimeMemoryStream = new();
-            using MemoryStream dailyReportMemoryStream = new();
-            var streams = await Task.WhenAll(
+            streams = await Task.WhenAll(
                 // 勤務表を開く
                 OpenAttendanceStreamAsync(attendancePram, attendanceMemoryStream),
                 // 残業実績表を開く
                 OpenOvertimeStreamAsync(attendancePram, overtimeMemoryStream),
                 // 日報を開く
                 OpenDailyAchievementStreamAsync(attendancePram, dailyReportMemoryStream));
+        }
+        catch (Exception ex) when (ex is InvalidOperationException or EmployeeAggregationException
+                or OvertimeWorkTableCreatorException or RecordManHourApplicationException or FileStreamOpenerException)
+        {
+            throw new RecordManHourApplicationException(ex.InnerException.Message, ex.InnerException);
+        }
 
-            using Stream attendanceFileStream = streams[0];
-            using Stream overtimeFileStream = streams[1];
-            using Stream dailyReortFileStram = streams[2];
+        using Stream attendanceFileStream = streams[0];
+        using Stream overtimeFileStream = streams[1];
+        using Stream dailyReortFileStram = streams[2];
 
-            Attendance achievement = attendancePram.Convert();
+        Attendance achievement = attendancePram.Convert();
 
-            var workBookTask = Task.WhenAll(
-                // 勤務表に追加する
-                _attendanceTableRepository.AddWokedDayAsync(attendanceMemoryStream, achievement, canAttendanceTableOverwriting),
+        var workBookTask = Task.WhenAll(
+            // 勤務表に追加する
+            _attendanceTableRepository.AddWokedDayAsync(attendanceMemoryStream, achievement, canAttendanceTableOverwriting),
 
-                // 残業実績表に追加する
-                _overtimeWorkTableRepository.AddAsync(overtimeMemoryStream, achievement),
+            // 残業実績表に追加する
+            _overtimeWorkTableRepository.AddAsync(overtimeMemoryStream, achievement),
 
-                // 受注管理日報に追加する
-                _workedRecordAgentRepository.AddAsync(dailyReportMemoryStream, achievement)
-            );
-
+            // 受注管理日報に追加する
+            _workedRecordAgentRepository.AddAsync(dailyReportMemoryStream, achievement)
+        );
+        try
+        {
             await workBookTask.ContinueWith(async _ =>
             {
                 attendanceMemoryStream.Seek(0, SeekOrigin.Begin);
@@ -96,15 +106,19 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
             },
             TaskContinuationOptions.OnlyOnRanToCompletion);
         }
-        catch (AggregateException ex)
+        catch (Exception ex) when (ex is OvertimeWorkTableEmployeeDoseNotFoundException)
         {
-            if (ex.InnerException is OvertimeWorkTableEmployeeDoseNotFoundException)
-                throw new OvertimeWorkTableEmployeeDoseNotFoundApplicationException(ex.InnerException.Message, ex.InnerException);
-            if (ex.InnerException is AttendanceAggregationException or ManHourRecordServiceException or OvertimeWorkTableCreatorException)
-                throw new RecordManHourApplicationException(ex.Message, ex);
-            else
-                throw;
+            throw new OvertimeWorkTableEmployeeDoseNotFoundApplicationException(ex.Message, ex);
         }
+        catch (Exception ex) when (ex is ManHourRecordServiceException or EmployeeAggregationException )
+        {
+            throw new RecordManHourApplicationException(ex.InnerException.Message, ex.InnerException);
+        }
+        catch (TaskCanceledException ex)
+        {
+            throw new RecordCanceledApplicationException("中止しました", ex);
+        }
+
     }
 
     /// <summary>

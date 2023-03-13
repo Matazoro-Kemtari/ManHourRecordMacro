@@ -228,6 +228,10 @@ namespace Wada.ManHourRecordFunctions
                 if (result != MessageBoxResult.Yes)
                     InitializeInputSheet(classInput);
             }
+            catch (RecordCanceledApplicationException ex)
+            {
+                MessageBox.Show(ex.Message, "工数入力", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             catch (Exception ex) when (ex is NullReferenceException
                                        || ex is RecordManHourApplicationException
                                        || ex is OvertimeWorkTableEmployeeDoseNotFoundApplicationException)

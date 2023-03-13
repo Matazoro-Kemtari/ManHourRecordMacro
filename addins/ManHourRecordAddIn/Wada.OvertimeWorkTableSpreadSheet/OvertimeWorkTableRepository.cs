@@ -30,7 +30,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet
             var employee = await _employeeRepository.FindByEmployeeNumberAsync(workDay.EmployeeNumber);
 
             using var xlBook = new XLWorkbook(stream);
-            var targetCell = SearchWorkerCellAsync(xlBook, employee.Name, workDay.AchievementDate.Value);
+            var targetCell = await SearchWorkerCellAsync(xlBook, employee.Name, workDay.AchievementDate.Value);
 
             // セル背景を塗る
             PaintCellBackground(targetCell, workDay);
@@ -86,22 +86,16 @@ namespace Wada.OvertimeWorkTableSpreadSheet
         }
 
         [Logging]
-        private static IXLCell SearchWorkerCellAsync(IXLWorkbook xlBook, string workerName, DateTime overtimeDay)
+        private static async Task<IXLCell> SearchWorkerCellAsync(IXLWorkbook xlBook, string workerName, DateTime overtimeDay)
         {
             // 名前の区切り空白を全角半角をあいまいに検索
             var regName = Regex.Replace(workerName, @"[\s　]", @"[\s　]");
-            //var empCels = await Task.WhenAll(
-            //    xlBook.Worksheets
-            //    .Where(x => !Regex.IsMatch(x.Name, @"(一覧|三六|祝日)"))
-            //    .Select(async sheet => await Task.Run(() => sheet.Cells("B9:B35")
-            //                                                     .Where(x => !x.IsEmpty())
-            //                                                     .FirstOrDefault(cell => Regex.IsMatch(cell.GetString(), regName)))));
-            var empCels = 
-                xlBook.Worksheets
-                .Where(x => !Regex.IsMatch(x.Name, @"(一覧|三六|祝日)"))
-                .Select(sheet => sheet.Cells("B9:B35")
-                                    .Where(x => !x.IsEmpty())
-                                    .FirstOrDefault(cell => Regex.IsMatch(cell.GetString(), regName)));
+
+            var empCels = await Task.WhenAll(
+                xlBook.Worksheets.Where(x => !Regex.IsMatch(x.Name, @"(一覧|三六|祝日)"))
+                                 .Select(async sheet =>await Task.Run(()=> sheet.Cells("B9:B35")
+                                 .Where(x => !x.IsEmpty())
+                                 .FirstOrDefault(cell => Regex.IsMatch(cell.GetString(), regName)))));
 
             var empCel = empCels.Where(x => x != null).FirstOrDefault()
                 ?? throw new OvertimeWorkTableEmployeeDoseNotFoundException(
