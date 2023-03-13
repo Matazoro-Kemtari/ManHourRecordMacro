@@ -43,9 +43,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.Data.OrderManagementTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.Data.DesignDepartmentDataBse", "Wada.Data.DesignDepartmentDataBse\Wada.Data.DesignDepartmentDataBse.csproj", "{60CFA339-DB9B-4635-9184-4FB92474248F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingClassificationsTableSpreadSheet", "WorkingClassificationsTableSpreadSheet\WorkingClassificationsTableSpreadSheet.csproj", "{32617418-63F0-4457-ADFF-346C44F0E8D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingClassificationsTableSpreadSheet", "WorkingClassificationsTableSpreadSheet\WorkingClassificationsTableSpreadSheet.csproj", "{32617418-63F0-4457-ADFF-346C44F0E8D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingClassificationsTableSpreadSheetTests", "WorkingClassificationsTableSpreadSheetTests\WorkingClassificationsTableSpreadSheetTests.csproj", "{050A4CF1-6DE9-46AA-855A-97AF9706257C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingClassificationsTableSpreadSheetTests", "WorkingClassificationsTableSpreadSheetTests\WorkingClassificationsTableSpreadSheetTests.csproj", "{050A4CF1-6DE9-46AA-855A-97AF9706257C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.AttendanceTableSpreadSheetTests", "Wada.AttendanceTableSpreadSheetTests\Wada.AttendanceTableSpreadSheetTests.csproj", "{83BDCB09-399A-420D-8D62-DA5A617B3B0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{050A4CF1-6DE9-46AA-855A-97AF9706257C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{050A4CF1-6DE9-46AA-855A-97AF9706257C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{050A4CF1-6DE9-46AA-855A-97AF9706257C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83BDCB09-399A-420D-8D62-DA5A617B3B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83BDCB09-399A-420D-8D62-DA5A617B3B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83BDCB09-399A-420D-8D62-DA5A617B3B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83BDCB09-399A-420D-8D62-DA5A617B3B0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{60CFA339-DB9B-4635-9184-4FB92474248F} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
 		{32617418-63F0-4457-ADFF-346C44F0E8D1} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
 		{050A4CF1-6DE9-46AA-855A-97AF9706257C} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
+		{83BDCB09-399A-420D-8D62-DA5A617B3B0C} = {3F0BA832-70E9-4253-A0D3-316F1F9042B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78F51FF3-4929-4A88-B08F-28C47DA0E42B}
