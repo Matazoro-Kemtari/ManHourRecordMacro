@@ -93,7 +93,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet
 
             var empCels = await Task.WhenAll(
                 xlBook.Worksheets.Where(x => !Regex.IsMatch(x.Name, @"(一覧|三六|祝日)"))
-                                 .Select(async sheet =>await Task.Run(()=> sheet.Cells("B9:B35")
+                                 .Select(async sheet => await Task.Run(() => sheet.Cells("B9:B35")
                                  .Where(x => !x.IsEmpty())
                                  .FirstOrDefault(cell => Regex.IsMatch(cell.GetString(), regName)))));
 

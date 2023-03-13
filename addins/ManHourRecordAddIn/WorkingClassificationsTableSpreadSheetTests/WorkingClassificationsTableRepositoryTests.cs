@@ -8,7 +8,7 @@ namespace WorkingClassificationsTableSpreadSheet.Tests
     public class WorkingClassificationsTableRepositoryTests
     {
         [TestMethod()]
-        public async Task 正常系_項目分類表が取得できること()
+        public void 正常系_項目分類表が取得できること()
         {
             // given
             var stream = new MemoryStream();
@@ -26,7 +26,7 @@ namespace WorkingClassificationsTableSpreadSheet.Tests
 
             // when
             IWorkingClassificationsTableRepository repository = new WorkingClassificationsTableRepository();
-            var actual = await repository.FetchAll(stream);
+            var actual = repository.FetchAll(stream);
 
             // then
             Assert.IsNotNull(actual);

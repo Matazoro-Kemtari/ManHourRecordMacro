@@ -61,7 +61,7 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
         catch (Exception ex) when (ex is InvalidOperationException or EmployeeAggregationException
                 or OvertimeWorkTableCreatorException or RecordManHourApplicationException or FileStreamOpenerException)
         {
-            throw new RecordManHourApplicationException(ex.InnerException.Message, ex.InnerException);
+            throw new RecordManHourApplicationException(ex.Message, ex);
         }
 
         using Stream attendanceFileStream = streams[0];
@@ -80,6 +80,7 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
             // 受注管理日報に追加する
             _workedRecordAgentRepository.AddAsync(dailyReportMemoryStream, achievement)
         );
+
         try
         {
             await workBookTask.ContinueWith(async _ =>
@@ -110,15 +111,10 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
         {
             throw new OvertimeWorkTableEmployeeDoseNotFoundApplicationException(ex.Message, ex);
         }
-        catch (Exception ex) when (ex is ManHourRecordServiceException or EmployeeAggregationException )
+        catch (Exception ex) when (ex is ManHourRecordServiceException or EmployeeAggregationException)
         {
             throw new RecordManHourApplicationException(ex.InnerException.Message, ex.InnerException);
         }
-        catch (TaskCanceledException ex)
-        {
-            throw new RecordCanceledApplicationException("中止しました", ex);
-        }
-
     }
 
     /// <summary>

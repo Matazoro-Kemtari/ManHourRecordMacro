@@ -39,6 +39,17 @@ namespace Wada.ManHourRecordFunctions
         /// </summary>
         /// <returns></returns>
         Task WriteManHourRecordAsync();
+
+        /// <summary>
+        /// 履歴を取得する
+        /// </summary>
+        /// <returns></returns>
+        Task FetchManHourRecordAsync();
+
+        /// <summary>
+        /// 入力クリアする
+        /// </summary>
+        void ClearInputedManHour();
     }
 
     public class AchievementInputSheet : IAchievementInputSheet
@@ -49,6 +60,8 @@ namespace Wada.ManHourRecordFunctions
         private readonly IFetchDepartmentListUseCase _fetchDepartmentListUseCase;
         private readonly IFetchWorkingClassificationListUseCase _fetchWorkingClassificationListUseCase;
         private readonly IRecordManMonthUseCase _recordManMonthUseCase;
+
+        private bool _isCanceled;
 
         public AchievementInputSheet(IConfiguration configuration, IFetchWorkingClassificationsTableUseCase fetchWorkingClassificationsTableUseCase, IFetchDepartmentListUseCase fetchDepartmentListUseCase, IFetchWorkingClassificationListUseCase fetchWorkingClassificationListUseCase, IRecordManMonthUseCase recordManMonthUseCase)
         {
@@ -228,10 +241,6 @@ namespace Wada.ManHourRecordFunctions
                 if (result != MessageBoxResult.Yes)
                     InitializeInputSheet(classInput);
             }
-            catch (RecordCanceledApplicationException ex)
-            {
-                MessageBox.Show(ex.Message, "工数入力", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
             catch (Exception ex) when (ex is NullReferenceException
                                        || ex is RecordManHourApplicationException
                                        || ex is OvertimeWorkTableEmployeeDoseNotFoundApplicationException)
@@ -240,9 +249,16 @@ namespace Wada.ManHourRecordFunctions
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"致命的なエラーが発生しました システム担当まで連絡してください\n" +
-                    $"{ex.Message}\n{ex}", "工数入力", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (_isCanceled && ex is OperationCanceledException)
+                {
+                    MessageBox.Show("中止しました", "工数入力", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        $"致命的なエラーが発生しました システム担当まで連絡してください\n" +
+                        $"{ex.Message}\n{ex}", "工数入力", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             finally
             {
@@ -285,11 +301,15 @@ namespace Wada.ManHourRecordFunctions
 
         [Logging]
         private bool ConfirmAttendanceTableOverwriting(string message)
-            => MessageBox.Show($"勤務表を上書きしてもよろしいですか?\n{message}",
-                               "工数入力",
-                               MessageBoxButton.YesNo,
-                               MessageBoxImage.Question,
-                               MessageBoxResult.No) == MessageBoxResult.Yes;
+        {
+            var response = MessageBox.Show($"勤務表を上書きしてもよろしいですか?\n{message}",
+                                       "工数入力",
+                                       MessageBoxButton.YesNo,
+                                       MessageBoxImage.Question,
+                                       MessageBoxResult.No);
+            _isCanceled = response == MessageBoxResult.No;
+            return !_isCanceled;
+        }
 
         private void DrowStart()
         {
@@ -482,6 +502,16 @@ namespace Wada.ManHourRecordFunctions
                 x => x.rowValues.ToList().ForEach(
                     y => result[x.rowIndex, y.cellIndex] = y.cellValue));
             return result;
+        }
+
+        public Task FetchManHourRecordAsync()
+        {
+            return Task.Run(() => MessageBox.Show("実装前の機能です しばらくお待ちください", "工数入力", MessageBoxButton.OK, MessageBoxImage.Warning));
+        }
+
+        public void ClearInputedManHour()
+        {
+            MessageBox.Show("実装前の機能です しばらくお待ちください", "工数入力", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }
