@@ -206,15 +206,30 @@ namespace Wada.ManHourRecordFunctions
                     throw new ValidateAbortException("日付は必須項目です");
                 AchievementDateParam achievementDate = new AchievementDateParam(_achievementDate);
 
-                // 始業時間
-                var startTimeRange = classInput.Range["B3"];
-                if (!TimeSpan.TryParse(startTimeRange.Text, out TimeSpan startTime))
-                    throw new ValidateAbortException("始業は必須項目です");
-
                 // 勤務
                 var dayOffClassificationRange = classInput.Range["D3"];
                 DayOffClassificationAttempt dayOffClassification = (dayOffClassificationRange.Value as string)?.ToDayOffClassificationAttempt()
                     ?? DayOffClassificationAttempt.None;
+
+                // 始業時間
+                var startTimeRange = classInput.Range["B3"];
+                TimeSpan? startTime = null;
+                switch (dayOffClassification)
+                {
+                    case DayOffClassificationAttempt.None:
+                    case DayOffClassificationAttempt.AMPaidLeave:
+                    case DayOffClassificationAttempt.PMPaidLeave:
+                    case DayOffClassificationAttempt.TransferedAttendance:
+                    case DayOffClassificationAttempt.HolidayWorked:
+                    case DayOffClassificationAttempt.Lateness:
+                    case DayOffClassificationAttempt.EarlyLeave:
+                        if (!TimeSpan.TryParse(startTimeRange.Text, out TimeSpan _startTime))
+                            throw new ValidateAbortException("勤務の区分により始業は必須項目です");
+                        startTime = _startTime;
+                        break;
+                    default:
+                        break;
+                }
 
                 // 所属
                 var departmentRange = classInput.Range["F2"];

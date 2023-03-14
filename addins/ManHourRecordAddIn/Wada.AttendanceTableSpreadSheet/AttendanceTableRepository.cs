@@ -194,8 +194,23 @@ public class AttendanceTableRepository : IAttendanceTableRepository
                 throw new RecordAbortException("中止しました");
 
         attendanceRow.Cell(DayOffColumnLetter).Value = dayOffClassification.GetEnumDisplayShortName();
-        attendanceRow.Cell(StartedTimeColumnLetter).Value = startTime;
-        attendanceRow.Cell(EndedTimeColumnLetter).Value = endTime;
+        switch (dayOffClassification)
+        {
+            case DayOffClassification.None:
+            case DayOffClassification.AMPaidLeave:
+            case DayOffClassification.PMPaidLeave:
+            case DayOffClassification.TransferedAttendance:
+            case DayOffClassification.HolidayWorked:
+            case DayOffClassification.Lateness:
+            case DayOffClassification.EarlyLeave:
+                attendanceRow.Cell(StartedTimeColumnLetter).Value = startTime;
+                attendanceRow.Cell(EndedTimeColumnLetter).Value = endTime;
+                break;
+            default:
+                attendanceRow.Cell(StartedTimeColumnLetter).Clear(XLClearOptions.Contents);
+                attendanceRow.Cell(EndedTimeColumnLetter).Clear(XLClearOptions.Contents);
+                break;
+        }
     }
 
     [Logging]
