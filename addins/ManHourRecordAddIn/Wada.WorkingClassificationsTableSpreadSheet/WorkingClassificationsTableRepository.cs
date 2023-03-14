@@ -2,7 +2,7 @@
 using Wada.AOP.Logging;
 using Wada.ManHourRecordService;
 
-namespace WorkingClassificationsTableSpreadSheet;
+namespace Wada.WorkingClassificationsTableSpreadSheet;
 
 public class WorkingClassificationsTableRepository : IWorkingClassificationsTableRepository
 {

@@ -33,17 +33,27 @@ public class WorkedRecordAgentRepository : IWorkedRecordAgentRepository
             writedRow.ToList().ForEach(x => x.Cell("B").SetValue(0u));
             // 新規追加
             reportTable.AppendData(additionalData);
-            // 先ほど社員番号を0にした行を削除
-            var deletableRow = reportTable.DataRange.Rows(x => x.Cell("B").GetValue<uint>().Equals(0u));
-            deletableRow.Delete();
+            if (reportTable.DataRange.RowCount() > writedRow.Count())
+            {
+                // 先ほど社員番号を0にした行を削除
+                var deletableRow = reportTable.DataRange.Rows(x => x.Cell("B").GetValue<uint>().Equals(0u));
+                deletableRow.Delete();
+            }
+            else
+            {
+                sheet.Tables.Remove(0);
+                sheet.Rows($"2:{writedRow.Count() + 1}").Clear();
+            }
         }
         else
         {
             sheet.Columns("A:L").Width = 11.88;
 
-            var range = sheet.RangeUsed();
-            _ = sheet.Cell(2, 1).InsertData(additionalData);
-            sheet.RangeUsed().CreateTable();
+            if (additionalData.Length > 0)
+            {
+                _ = sheet.Cell(2, 1).InsertData(additionalData);
+                sheet.RangeUsed().CreateTable();
+            }
         }
 
         xlBook.Save();
@@ -99,7 +109,7 @@ public class WorkedRecordAgentRepository : IWorkedRecordAgentRepository
                     // コード
                     jigCode,
                     // 作業名
-                    x.MajorWorkingClassification,
+                    x.AchievementProcess,
                     // 特記事項
                     x.Note,
                     // 目標工数

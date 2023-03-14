@@ -43,9 +43,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.Data.OrderManagementTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.Data.DesignDepartmentDataBse", "Wada.Data.DesignDepartmentDataBse\Wada.Data.DesignDepartmentDataBse.csproj", "{60CFA339-DB9B-4635-9184-4FB92474248F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingClassificationsTableSpreadSheet", "WorkingClassificationsTableSpreadSheet\WorkingClassificationsTableSpreadSheet.csproj", "{32617418-63F0-4457-ADFF-346C44F0E8D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.WorkingClassificationsTableSpreadSheet", "Wada.WorkingClassificationsTableSpreadSheet\Wada.WorkingClassificationsTableSpreadSheet.csproj", "{32617418-63F0-4457-ADFF-346C44F0E8D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingClassificationsTableSpreadSheetTests", "WorkingClassificationsTableSpreadSheetTests\WorkingClassificationsTableSpreadSheetTests.csproj", "{050A4CF1-6DE9-46AA-855A-97AF9706257C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.WorkingClassificationsTableSpreadSheetTests", "Wada.WorkingClassificationsTableSpreadSheetTests\Wada.WorkingClassificationsTableSpreadSheetTests.csproj", "{050A4CF1-6DE9-46AA-855A-97AF9706257C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wada.AttendanceTableSpreadSheetTests", "Wada.AttendanceTableSpreadSheetTests\Wada.AttendanceTableSpreadSheetTests.csproj", "{83BDCB09-399A-420D-8D62-DA5A617B3B0C}"
 EndProject

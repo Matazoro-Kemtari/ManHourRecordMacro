@@ -50,18 +50,18 @@ namespace ManHourRecordAddIn
             }
         }
 
-        [ExcelFunction(Description = "入力漏れをチェックする")]
+        [ExcelFunction(Description = "勤務日の入力漏れをチェックする")]
         [Logging]
         public static bool CheckExistsInputLeak()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        [ExcelCommand(Description = "入力漏れを補う")]
+        [ExcelCommand(Description = "勤務日の入力漏れを補う")]
         [Logging]
         public static void CompensateInputLeak()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         [ExcelCommand(Description = "実績を登録する")]

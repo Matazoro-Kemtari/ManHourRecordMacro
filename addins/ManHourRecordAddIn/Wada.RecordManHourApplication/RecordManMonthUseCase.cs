@@ -59,16 +59,24 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
                 OpenDailyAchievementStreamAsync(attendancePram, dailyReportMemoryStream));
         }
         catch (Exception ex) when (ex is InvalidOperationException or EmployeeAggregationException
-                or OvertimeWorkTableCreatorException or RecordManHourApplicationException or FileStreamOpenerException)
+                or OvertimeWorkTableCreatorException or UseCaseException or FileStreamOpenerException)
         {
-            throw new RecordManHourApplicationException(ex.Message, ex);
+            throw new UseCaseException(ex.Message, ex);
         }
 
         using Stream attendanceFileStream = streams[0];
         using Stream overtimeFileStream = streams[1];
         using Stream dailyReortFileStram = streams[2];
 
-        Attendance achievement = attendancePram.Convert();
+        Attendance achievement;
+        try
+        {
+            achievement = attendancePram.Convert();
+        }
+        catch (Exception ex) when (ex is AttendanceAggregationException or WorkingNumberException)
+        {
+            throw new RecordAbortException(ex.Message, ex);
+        }
 
         var workBookTask = Task.WhenAll(
             // 勤務表に追加する
@@ -111,9 +119,9 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
         {
             throw new OvertimeWorkTableEmployeeDoseNotFoundApplicationException(ex.Message, ex);
         }
-        catch (Exception ex) when (ex is ManHourRecordServiceException or EmployeeAggregationException)
+        catch (Exception ex) when (ex is DomainException or EmployeeAggregationException)
         {
-            throw new RecordManHourApplicationException(ex.InnerException.Message, ex.InnerException);
+            throw new UseCaseException(ex.InnerException.Message, ex.InnerException);
         }
     }
 
@@ -144,7 +152,7 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
 
         var fileExists = fileInfo.Exists;
         var fileStream = _streamOpener.OpenOrCreate(path)
-            ?? throw new RecordManHourApplicationException(
+            ?? throw new UseCaseException(
                 $"ファイルが開けませんでした Path: {path}");
 
         if (!fileExists)
@@ -189,7 +197,7 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
     /// <param name="memoryStream"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    /// <exception cref="RecordManHourApplicationException"></exception>
+    /// <exception cref="UseCaseException"></exception>
     [Logging]
     private async Task<Stream> OpenOvertimeStreamAsync(AttendanceParam attendanceParam, MemoryStream memoryStream)
     {
@@ -208,7 +216,7 @@ public class RecordManMonthUseCase : IRecordManMonthUseCase
             $"残業実績表({ReplaceInvalidChar(attendanceParam.Department)}).xlsx");
 
         var fileStream = _streamOpener.OpenOrCreate(path)
-            ?? throw new RecordManHourApplicationException(
+            ?? throw new UseCaseException(
                 $"ファイルが開けませんでした Path: {path}");
 
         fileStream.Seek(0, SeekOrigin.Begin);

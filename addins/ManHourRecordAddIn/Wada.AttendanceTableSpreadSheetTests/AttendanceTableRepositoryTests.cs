@@ -77,7 +77,7 @@ public class AttendanceTableRepositoryTests
             => repository.AddWokedDayAsync(xlsStream, workDay, (message) => true);
 
         // then
-        var ex = await Assert.ThrowsExceptionAsync<ManHourRecordServiceException>(target);
+        var ex = await Assert.ThrowsExceptionAsync<DomainException>(target);
         var expected = $"{DateTime.Now.Month}月のシートが見つかりません";
         Assert.AreEqual(expected, ex.Message);
     }
@@ -101,7 +101,7 @@ public class AttendanceTableRepositoryTests
             => repository.AddWokedDayAsync(xlsStream, workDay, (message) => true);
 
         // then
-        var ex = await Assert.ThrowsExceptionAsync<ManHourRecordServiceException>(target);
+        var ex = await Assert.ThrowsExceptionAsync<DomainException>(target);
         var expected = $"年月が取得できません シート:{DateTime.Now.Month}月, セル:A1";
         Assert.AreEqual(expected, ex.Message);
     }
@@ -125,7 +125,7 @@ public class AttendanceTableRepositoryTests
         => repository.AddWokedDayAsync(xlsStream, workDay, (message) => true);
 
         // then
-        var ex = await Assert.ThrowsExceptionAsync<ManHourRecordServiceException>(target);
+        var ex = await Assert.ThrowsExceptionAsync<DomainException>(target);
         var expected = $"社員番号が取得できません シート:{DateTime.Now.Month}月, セル:G2";
         Assert.AreEqual(expected, ex.Message);
     }
@@ -148,7 +148,7 @@ public class AttendanceTableRepositoryTests
             => repository.AddWokedDayAsync(xlsStream, workDay, (message) => true);
 
         // then
-        var ex = await Assert.ThrowsExceptionAsync<ManHourRecordServiceException>(target);
+        var ex = await Assert.ThrowsExceptionAsync<DomainException>(target);
         var expected = $"勤務表の社員番号が異なります シート:{DateTime.Now.Month}月, 社員番号:{workDay.EmployeeNumber + 1}";
         Assert.AreEqual(expected, ex.Message);
     }

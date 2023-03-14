@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wada.ManHourRecordService;
 
-namespace WorkingClassificationsTableSpreadSheet.Tests
+namespace Wada.WorkingClassificationsTableSpreadSheet.Tests
 {
     [TestClass()]
     public class WorkingClassificationsTableRepositoryTests

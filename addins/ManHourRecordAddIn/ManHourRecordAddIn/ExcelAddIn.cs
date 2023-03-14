@@ -13,7 +13,7 @@ using Wada.OvertimeWorkTableSpreadSheet;
 using Wada.RecordManHourApplication;
 using Wada.SettingValidationRuleApplication;
 using Wada.WorkedRecordAgentSpreadSheet;
-using WorkingClassificationsTableSpreadSheet;
+using Wada.WorkingClassificationsTableSpreadSheet;
 
 namespace ManHourRecordAddIn
 {

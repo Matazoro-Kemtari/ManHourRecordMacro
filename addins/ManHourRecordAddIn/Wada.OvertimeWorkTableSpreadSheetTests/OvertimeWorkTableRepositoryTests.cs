@@ -95,7 +95,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet.Tests
                 AppDomain.CurrentDomain.BaseDirectory,
                 "Template",
                 testDataFileName);
-            FileInfo templateFileInfo = new FileInfo(templatePath);
+            FileInfo templateFileInfo = new(templatePath);
             if (templateFileInfo.Exists)
                 templateFileInfo.Delete();
 
@@ -194,7 +194,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet.Tests
                 AppDomain.CurrentDomain.BaseDirectory,
                 "Template",
                 testDataFileName);
-            FileInfo templateFileInfo = new FileInfo(templatePath);
+            FileInfo templateFileInfo = new(templatePath);
             if (templateFileInfo.Exists)
                 templateFileInfo.Delete();
 
@@ -209,11 +209,9 @@ namespace Wada.OvertimeWorkTableSpreadSheet.Tests
                 using var write = templateFileInfo.Create();
                 resurceStream?.CopyTo(write);
 
-                using (var xlResurce = new XLWorkbook(write))
-                {
-                    xlResurce.Worksheet("祝日").Delete();
-                    xlResurce.Save();
-                }
+                using var xlResurce = new XLWorkbook(write);
+                xlResurce.Worksheet("祝日").Delete();
+                xlResurce.Save();
             }
 
             // when

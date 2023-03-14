@@ -44,32 +44,44 @@ namespace Wada.OvertimeWorkTableSpreadSheet
         [Logging]
         private async Task WriteOvertimeManHourAsync(IXLCell targetCell, Attendance attendance)
         {
-            decimal? overtimeHour = null;
+            bool isHoliday;
+            try
+            {
+                // 休日リストを取得
+                var ownHolidays = await _ownCompanyHolidayRepository.FindByYearMonthAsync(
+                        attendance.AchievementDate.Value.Year,
+                        attendance.AchievementDate.Value.Month);
+
+                isHoliday = ownHolidays.Any(x => x.HolidayDate == attendance.AchievementDate.Value);
+            }
+            catch (OwnCompanyCalendarAggregationException)
+            {
+                isHoliday = attendance.AchievementDate.Value.DayOfWeek switch
+                {
+                    DayOfWeek.Saturday or DayOfWeek.Sunday => true,
+                    _ => false,
+                };
+            }
+
             if (attendance.HasActualOvertime)
             {
                 var total = attendance.Achievements.Sum(x => x.ManHour);
-                try
-                {
-                    // 休日リストを取得
-                    var ownHolidays = await _ownCompanyHolidayRepository.FindByYearMonthAsync(
-                            attendance.AchievementDate.Value.Year,
-                            attendance.AchievementDate.Value.Month);
 
-                    if (ownHolidays.Where(x => x.HolidayDate == attendance.AchievementDate.Value).Any())
-                        overtimeHour = total;
-                    else
-                        overtimeHour = total - 8;
-                }
-                catch (OwnCompanyCalendarAggregationException)
-                {
-                    if (attendance.AchievementDate.Value.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday)
-                        overtimeHour = total;
-                    else
-                        overtimeHour = total - 8;
-                }
+                decimal overtimeHour = 0m;
+                if (isHoliday)
+                    overtimeHour = total;
+                else
+                    overtimeHour = total - 8;
+
+                targetCell.SetValue(overtimeHour).Style.NumberFormat.SetFormat("0.0");
             }
-
-            targetCell.SetValue(overtimeHour).Style.NumberFormat.SetFormat("0.0");
+            else
+            {
+                if (isHoliday)
+                    targetCell.Clear(XLClearOptions.Comments);
+                else
+                    targetCell.SetValue(0).Style.NumberFormat.SetFormat("0.0");
+            }
         }
 
         [Logging]

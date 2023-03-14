@@ -191,11 +191,26 @@ public class AttendanceTableRepository : IAttendanceTableRepository
             || !attendanceRow.Cell(EndedTimeColumnLetter).IsEmpty())
             if (!canOverwriting(
                 $"シート: {targetSheet.Name}, 日付: {achievementDate:yyyy/MM/dd}"))
-                throw new RecordCancelServiceException("中止しました");
+                throw new RecordAbortException("中止しました");
 
         attendanceRow.Cell(DayOffColumnLetter).Value = dayOffClassification.GetEnumDisplayShortName();
-        attendanceRow.Cell(StartedTimeColumnLetter).Value = startTime;
-        attendanceRow.Cell(EndedTimeColumnLetter).Value = endTime;
+        switch (dayOffClassification)
+        {
+            case DayOffClassification.None:
+            case DayOffClassification.AMPaidLeave:
+            case DayOffClassification.PMPaidLeave:
+            case DayOffClassification.TransferedAttendance:
+            case DayOffClassification.HolidayWorked:
+            case DayOffClassification.Lateness:
+            case DayOffClassification.EarlyLeave:
+                attendanceRow.Cell(StartedTimeColumnLetter).Value = startTime;
+                attendanceRow.Cell(EndedTimeColumnLetter).Value = endTime;
+                break;
+            default:
+                attendanceRow.Cell(StartedTimeColumnLetter).Clear(XLClearOptions.Contents);
+                attendanceRow.Cell(EndedTimeColumnLetter).Clear(XLClearOptions.Contents);
+                break;
+        }
     }
 
     [Logging]
@@ -211,20 +226,20 @@ public class AttendanceTableRepository : IAttendanceTableRepository
                 .Select(async sheet => await Task.Run(() =>
                 {
                     if (!sheet.Cell("A1").TryGetValue(out DateTime yearMonth))
-                        throw new ManHourRecordServiceException(
+                        throw new DomainException(
                         $"年月が取得できません シート:{sheet.Name}, セル:A1");
 
                     if (!sheet.Cell("G2").TryGetValue(out uint employeeNumber))
-                        throw new ManHourRecordServiceException(
+                        throw new DomainException(
                         $"社員番号が取得できません シート:{sheet.Name}, セル:G2");
 
                     if (employeeNumber != workedEmployeeNumber)
-                        throw new ManHourRecordServiceException(
+                        throw new DomainException(
                         $"勤務表の社員番号が異なります シート:{sheet.Name}, 社員番号:{employeeNumber}");
 
                     if (yearMonth.Year != workedDay.Year
                     || yearMonth.Month != workedDay.Month)
-                        throw new ManHourRecordServiceException(
+                        throw new DomainException(
                         $"{month}月のシートが見つかりません");
 
                     return sheet;
@@ -235,7 +250,7 @@ public class AttendanceTableRepository : IAttendanceTableRepository
         }
         catch (InvalidOperationException ex)
         {
-            throw new ManHourRecordServiceException(
+            throw new DomainException(
                 $"{month}月のシートが見つかりません", ex);
         }
     }
