@@ -44,7 +44,7 @@ namespace Wada.OvertimeWorkTableSpreadSheet
         [Logging]
         private async Task WriteOvertimeManHourAsync(IXLCell targetCell, Attendance attendance)
         {
-            decimal? overtimeHour = null;
+            decimal overtimeHour = 0m;
             if (attendance.HasActualOvertime)
             {
                 var total = attendance.Achievements.Sum(x => x.ManHour);

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkingClassificationsTableSpreadSheet\WorkingClassificationsTableSpreadSheet.csproj" />
+    <ProjectReference Include="..\Wada.WorkingClassificationsTableSpreadSheet\Wada.WorkingClassificationsTableSpreadSheet.csproj" />
   </ItemGroup>
 
 </Project>

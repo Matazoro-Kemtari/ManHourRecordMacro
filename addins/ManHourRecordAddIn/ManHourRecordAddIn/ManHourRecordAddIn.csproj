@@ -111,9 +111,9 @@
       <Project>{8801EFE5-9504-4ED9-9D9F-9E40201588C1}</Project>
       <Name>Wada.WorkedRecordAgentSpreadSheet</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WorkingClassificationsTableSpreadSheet\WorkingClassificationsTableSpreadSheet.csproj">
-      <Project>{32617418-63F0-4457-ADFF-346C44F0E8D1}</Project>
-      <Name>WorkingClassificationsTableSpreadSheet</Name>
+    <ProjectReference Include="..\Wada.WorkingClassificationsTableSpreadSheet\Wada.WorkingClassificationsTableSpreadSheet.csproj">
+      <Project>{32617418-63f0-4457-adff-346c44f0e8d1}</Project>
+      <Name>Wada.WorkingClassificationsTableSpreadSheet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
