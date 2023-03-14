@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -197,20 +196,20 @@ namespace Wada.ManHourRecordFunctions
                 uint employeeNumber = default;
                 if (employeeNumberRange.Value == null
                     || !uint.TryParse(employeeNumberRange.Value.ToString(), out employeeNumber))
-                    throw new NullReferenceException("社員Noは必須項目です");
+                    throw new ValidateAbortException("社員Noは必須項目です");
 
                 // 実績日
                 var achievementDateRange = classInput.Range["A3"];
                 DateTime _achievementDate = new DateTime();
                 if (achievementDateRange.Value == null
                     || !DateTime.TryParse(achievementDateRange.Value.ToString(), out _achievementDate))
-                    throw new NullReferenceException("日付は必須項目です");
+                    throw new ValidateAbortException("日付は必須項目です");
                 AchievementDateParam achievementDate = new AchievementDateParam(_achievementDate);
 
                 // 始業時間
                 var startTimeRange = classInput.Range["B3"];
                 if (!TimeSpan.TryParse(startTimeRange.Text, out TimeSpan startTime))
-                    throw new NullReferenceException("始業は必須項目です");
+                    throw new ValidateAbortException("始業は必須項目です");
 
                 // 勤務
                 var dayOffClassificationRange = classInput.Range["D3"];
@@ -220,7 +219,7 @@ namespace Wada.ManHourRecordFunctions
                 // 所属
                 var departmentRange = classInput.Range["F2"];
                 string department = departmentRange.Value?.ToString()
-                    ?? throw new NullReferenceException("所属は必須項目です");
+                    ?? throw new ValidateAbortException("所属は必須項目です");
 
                 // 実績
                 IEnumerable<AchievementParam> achievementParams = FetchAchievements(classInput);
@@ -241,8 +240,13 @@ namespace Wada.ManHourRecordFunctions
                 if (result != MessageBoxResult.Yes)
                     InitializeInputSheet(classInput);
             }
+            catch (Exception ex) when (ex is ValidateAbortException
+                                       || ex is RecordAbortException)
+            {
+                MessageBox.Show(ex.Message, "工数入力", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             catch (Exception ex) when (ex is NullReferenceException
-                                       || ex is RecordManHourApplicationException
+                                       || ex is UseCaseException
                                        || ex is OvertimeWorkTableEmployeeDoseNotFoundApplicationException)
             {
                 MessageBox.Show(ex.Message, "工数入力", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -349,18 +353,18 @@ namespace Wada.ManHourRecordFunctions
 
                 Excel.Range workingNumberRange = classInput.Cells[i, "A"];
                 string workingNumber = workingNumberRange.Value?.ToString()
-                    ?? throw new NullReferenceException("作業Noは必須項目です");
+                    ?? throw new ValidateAbortException("作業Noは必須項目です");
 
                 Excel.Range detRange = classInput.Cells[i, "B"];
                 string det = detRange.Value?.ToString();
 
                 Excel.Range processRange = classInput.Cells[i, "C"];
                 string process = processRange.Value?.ToString()
-                    ?? throw new NullReferenceException("実績工程は必須項目です");
+                    ?? throw new ValidateAbortException("実績工程は必須項目です");
 
                 Excel.Range majorClassRange = classInput.Cells[i, "D"];
                 string majorClass = majorClassRange.Value?.ToString()
-                    ?? throw new NullReferenceException("大分類は必須項目です");
+                    ?? throw new ValidateAbortException("大分類は必須項目です");
 
                 Excel.Range middleClassRange = classInput.Cells[i, "E"];
                 string middleClass = middleClassRange.Value?.ToString();

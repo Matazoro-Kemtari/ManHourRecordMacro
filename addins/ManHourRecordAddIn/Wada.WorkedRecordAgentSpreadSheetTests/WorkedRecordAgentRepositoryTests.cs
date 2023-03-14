@@ -75,7 +75,7 @@ public class WorkedRecordAgentRepositoryTests
             TotalManHour = attendance.Achievements.Sum(x => x.ManHour),
             WorkingNumber = x.WorkingNumber.ToString(),
             workingLedger.JigCode,
-            WorkingName = x.MajorWorkingClassification,
+            WorkingName = x.AchievementProcess,
             x.Note,
             TargetManHour = x.ManHour,
             x.ManHour,

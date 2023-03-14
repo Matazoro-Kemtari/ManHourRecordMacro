@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementInputSheet.cs" />
+    <Compile Include="ValidateAbortException.cs" />
+    <Compile Include="PresentationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

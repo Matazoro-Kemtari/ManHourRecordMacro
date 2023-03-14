@@ -99,7 +99,7 @@ public class WorkedRecordAgentRepository : IWorkedRecordAgentRepository
                     // コード
                     jigCode,
                     // 作業名
-                    x.MajorWorkingClassification,
+                    x.AchievementProcess,
                     // 特記事項
                     x.Note,
                     // 目標工数
